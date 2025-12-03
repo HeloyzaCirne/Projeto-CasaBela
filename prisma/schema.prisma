@@ -14,18 +14,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model USUARIOS {
+  id_usuario Int    @id @default(autoincrement())
+  email      String @unique
+  nome       String
+  tipo       String
+  pedidos    PEDIDOS[]
+  avaliacoes AVALIACOES[]
+  favoritos  FAVORITOS[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model CATEGORIAS {
+  id       Int        @id @default(autoincrement())
+  nome     String     @unique
+  produtos PRODUTOS[]
+}
+
+model PRODUTOS {
+  id_produto   Int        @id @default(autoincrement())
+  nome         String
+  descricao    String?
+  preco        Int
+  estoque      Int
+  id_categoria Int
+  imagem       String
+  categoria    CATEGORIAS @relation(fields: [id_categoria], references: [id])
+  itensPedido  ITENS_PEDIDO[]
+  avaliacoes   AVALIACOES[]
+  favoritos    FAVORITOS[]
+}
+
+model PEDIDOS {
+  id_pedido    Int           @id @default(autoincrement())
+  id_usuario   Int
+  data_pedido  DateTime
+  status       String
+  valor_total  Int
+  usuario      USUARIOS      @relation(fields: [id_usuario], references: [id_usuario])
+  itens        ITENS_PEDIDO[]
+}
+
+model ITENS_PEDIDO {
+  id_item        Int        @id @default(autoincrement())
+  id_pedido      Int
+  id_produto     Int
+  quantidade     Int
+  preco_unitario Int
+  pedido         PEDIDOS    @relation(fields: [id_pedido], references: [id_pedido])
+  produto        PRODUTOS   @relation(fields: [id_produto], references: [id_produto])
+}
+
+model AVALIACOES {
+  id_avaliacao Int       @id @default(autoincrement())
+  id_usuario   Int
+  id_produto   Int
+  nota         Int
+  comentario   String?
+  data         DateTime
+  usuario      USUARIOS  @relation(fields: [id_usuario], references: [id_usuario])
+  produto      PRODUTOS  @relation(fields: [id_produto], references: [id_produto])
+}
+
+model FAVORITOS {
+  id_favorito Int      @id @default(autoincrement())
+  id_usuario  Int
+  id_produto  Int
+  usuario     USUARIOS @relation(fields: [id_usuario], references: [id_usuario])
+  produto     PRODUTOS @relation(fields: [id_produto], references: [id_produto])
 }
