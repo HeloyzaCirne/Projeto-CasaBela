@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/index.css" />
+        <title>Casa & Decoração</title>
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="home" color="white" size="18"></i>
+                </div>
+                <span>Casa & Decoração</span>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn">
+                    <i data-lucide="bell" size="20"></i>
+                </button>
+                <button class="btn-login">Entrar</button>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Transforme sua casa</h1>
+                <p>Encontre os melhores móveis e decorações</p>
+
+                <div class="search-bar">
+                    <i data-lucide="search" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Buscar móveis, decoração..."
+                    />
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2>Categorias</h2>
+
+            <div class="grid-container">
+                <div class="card">
+                    <div class="icon-box bg-moveis">
+                        <i data-lucide="armchair" size="28"></i>
+                    </div>
+                    <h3>Móveis</h3>
+                    <span>Sofás, mesas, cadeiras</span>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box bg-ilum">
+                        <i data-lucide="lamp" size="28"></i>
+                    </div>
+                    <h3>Iluminação</h3>
+                    <span>Luminárias, abajures</span>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box bg-decor">
+                        <i data-lucide="flower" size="28"></i>
+                    </div>
+                    <h3>Decoração</h3>
+                    <span>Vasos, quadros, plantas</span>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box bg-textil">
+                        <i data-lucide="component" size="28"></i>
+                    </div>
+                    <h3>Têxtil</h3>
+                    <span>Almofadas, cortinas</span>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

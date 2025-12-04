@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Casa & Decoração - Produtos</title>
+        <link rel="stylesheet" href="styles/catalogo.css" />
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <header>
+            <button class="icon-btn">
+                <i data-lucide="menu" size="24"></i>
+            </button>
+            <h1 class="header-title">Casa & Decoração</h1>
+            <button class="icon-btn">
+                <i data-lucide="shopping-cart" size="24"></i>
+            </button>
+        </header>
+
+        <section class="search-section">
+            <div class="search-box">
+                <i data-lucide="search" color="#9CA3AF" size="20"></i>
+                <input type="text" placeholder="Buscar produtos..." />
+            </div>
+        </section>
+
+        <section class="chips-scroll">
+            <button class="chip active">Todos</button>
+            <button class="chip inactive">Móveis</button>
+            <button class="chip inactive">Decoração</button>
+            <button class="chip inactive">Iluminação</button>
+            <button class="chip inactive">Têxtil</button>
+        </section>
+
+        <section class="filters-row">
+            <button class="dropdown-btn">
+                Categoria
+                <i data-lucide="chevron-down" size="16" color="#6B7280"></i>
+            </button>
+            <button class="dropdown-btn">
+                Faixa de Preço
+                <i data-lucide="chevron-down" size="16" color="#6B7280"></i>
+            </button>
+        </section>
+
+        <section class="results-info">
+            <span class="results-count">8 produtos encontrados</span>
+            <button class="sort-btn">
+                <i data-lucide="list-filter" size="16"></i>
+                Ordenar
+            </button>
+        </section>
+
+        <section class="product-grid">
+            <div class="product-card">
+                <div class="image-placeholder"></div>
+            </div>
+            <div class="product-card">
+                <div class="image-placeholder"></div>
+            </div>
+            <div class="product-card">
+                <div class="image-placeholder"></div>
+            </div>
+            <div class="product-card">
+                <div class="image-placeholder"></div>
+            </div>
+        </section>
+
+        <script>
+            lucide.createIcons();
+        </script>
+    </body>
+</html>
