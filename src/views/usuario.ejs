@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Minha Conta - Meus Pedidos</title>
+        <link rel="stylesheet" href="css/usuario.css">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <header>
+            <form action="/" method="get">
+                <button class="icon-btn">
+                    <i data-lucide="arrow-left" size="24"></i>
+                </button>
+            </form>
+            <h1>Minha Conta</h1>
+            <button class="icon-btn" style="visibility: hidden;">
+                <i data-lucide="sparkles" size="20"></i>
+            </button>
+        </header>
+
+        <section class="profile-section">
+            <div class="avatar">
+                <i data-lucide="user" size="32"></i>
+            </div>
+            <div class="profile-info">
+                <h2>Maria Silva</h2>
+                <p>maria.silva@email.com</p>
+                <!-- <p class="subtitle">Cliente desde Janeiro 2023</p> Por deslogar ou editar aqui -->
+            </div>
+        </section>
+
+        <nav class="tabs">
+            <button class="tab-btn">Histórico</button>
+            <button class="tab-btn active">Entrar/Cadastrar</button>
+        </nav>
+
+        <main class="user-container">
+            <form class="login-container">
+                <div class="section-header">
+                    <h1>Entrar</h1>
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="at-sign" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="hash" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Senha"
+                    />
+                </div>
+                <button class="btn-login">Entrar</button>
+            </form>
+            <form class="login-container">
+                <div class="section-header">
+                    <h1>Cadastrar</h1>
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="smile" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Nome de usuário"
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="at-sign" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="hash" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Senha"
+                    />
+                </div>
+                <button class="btn-login">Cadastrar</button>
+            </form>
+        </main>
+
+        <main class="orders-container">
+            <div class="section-header">
+                <h3>Meus Pedidos</h3>
+                <a href="#" class="filter-link">Filtrar</a>
+            </div>
+
+            <div class="order-card">
+                <div class="card-top">
+                    <div>
+                        <div class="order-id">PED-2024-001</div>
+                        <div class="order-date">15 Jan 2024</div>
+                    </div>
+                    <span class="badge delivered">Entregue</span>
+                </div>
+
+                <div class="card-products">
+                    <div class="product-thumb">
+                        <i data-lucide="armchair" size="18"></i>
+                    </div>
+                    <div class="product-thumb">
+                        <i data-lucide="table-2" size="18"></i>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <span class="price">R$ 2.769</span>
+                    <button class="btn-details">Ver detalhes</button>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="card-top">
+                    <div>
+                        <div class="order-id">PED-2024-002</div>
+                        <div class="order-date">28 Jan 2024</div>
+                    </div>
+                    <span class="badge sent">Enviado</span>
+                </div>
+
+                <div class="card-products">
+                    <div class="product-thumb">
+                        <i data-lucide="lamp" size="18"></i>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <span class="price">R$ 1.450</span>
+                    <button class="btn-details">Ver detalhes</button>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

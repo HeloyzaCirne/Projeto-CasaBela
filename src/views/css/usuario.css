@@ -1,0 +1,305 @@
+:root {
+    --primary-green: #1f4e34;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --bg-body: #ffffff;
+    --bg-light: #f9fafb;
+    --border-color: #e5e7eb;
+
+    /* Status Colors */
+    --status-delivered-bg: #dcfce7;
+    /* Verde claro */
+    --status-delivered-text: #166534;
+    --status-sent-bg: #dbeafe;
+    /* Azul claro */
+    --status-sent-text: #1e40af;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    padding-bottom: 2rem;
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- PROFILE SECTION --- */
+.profile-section {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    background-color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.profile-info h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.profile-info .subtitle {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+/* --- TABS --- */
+.tabs {
+    display: flex;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    gap: 2rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    /* Para cobrir a linha cinza */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-green);
+    border-radius: 3px 3px 0 0;
+}
+
+/* --- ORDERS SECTION --- */
+.orders-container {
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    min-height: calc(100vh - 250px);
+}
+
+.user-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-light);
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    min-height: calc(100vh - 250px);
+    gap: 1rem;
+    width: 100%;
+    /* Preenche o resto da tela */
+}
+
+
+.search-bar {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    /* Borda arredondada completa */
+    width: 100%;
+    max-width: 100%;
+    /* Ocupa toda a largura container */
+    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    margin-left: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.search-bar input::placeholder {
+    color: #aaa;
+}
+
+.btn-login {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    justify-self: start;
+}
+
+.section-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.section-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.filter-link {
+    font-size: 0.9rem;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* --- ORDER CARD --- */
+.order-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.order-id {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.order-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge.delivered {
+    background-color: var(--status-delivered-bg);
+    color: var(--status-delivered-text);
+}
+
+.badge.sent {
+    background-color: var(--status-sent-bg);
+    color: var(--status-sent-text);
+}
+
+.card-products {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.product-thumb {
+    width: 40px;
+    height: 40px;
+    background-color: #f3f4f6;
+    /* Cinza claro */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 1rem;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 1rem;
+}
+
+.btn-details {
+    background-color: #f3f4f6;
+    color: var(--text-main);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+}

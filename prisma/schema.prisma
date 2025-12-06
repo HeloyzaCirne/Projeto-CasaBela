@@ -19,6 +19,7 @@ model USUARIOS {
   email      String @unique
   nome       String
   tipo       String
+  senha      String
   pedidos    PEDIDOS[]
   avaliacoes AVALIACOES[]
   favoritos  FAVORITOS[]
