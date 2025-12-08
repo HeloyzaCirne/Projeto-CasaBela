@@ -6,6 +6,7 @@
         <title>Casa & Decoração - Produtos</title>
         <link rel="stylesheet" href="css/catalogo.css" />
         <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="js/catalogo.js" defer></script>
     </head>
     <body>
         <header>
@@ -26,26 +27,26 @@
         </section>
 
         <section class="chips-scroll">
-            <button class="chip active">Todos</button>
-            <button class="chip inactive">Móveis</button>
-            <button class="chip inactive">Decoração</button>
-            <button class="chip inactive">Iluminação</button>
-            <button class="chip inactive">Têxtil</button>
+            <button class="chip active" id="filtro-todos">Todos</button>
+            <button class="chip inactive" id="filtro-moveis">Móveis</button>
+            <button class="chip inactive" id="filtro-decoracao">Decoração</button>
+            <button class="chip inactive" id="filtro-iluminacao">Iluminação</button>
+            <button class="chip inactive" id="filtro-textil">Têxtil</button>
         </section>
 
         <section class="filters-row">
-            <button class="dropdown-btn">
+            <!-- <button class="dropdown-btn">
                 Categoria
                 <i data-lucide="chevron-down" size="16" color="#6B7280"></i>
             </button>
             <button class="dropdown-btn">
                 Faixa de Preço
                 <i data-lucide="chevron-down" size="16" color="#6B7280"></i>
-            </button>
+            </button> -->
         </section>
 
         <section class="results-info">
-            <span class="results-count">8 produtos encontrados</span>
+            <span class="results-count"><%= produtos.length %> produtos encontrados</span>
             <button class="sort-btn">
                 <i data-lucide="list-filter" size="16"></i>
                 Ordenar
@@ -53,18 +54,26 @@
         </section>
 
         <section class="product-grid">
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-            </div>
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-            </div>
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-            </div>
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-            </div>
+            <% produtos.forEach( function(produto) { %>
+                <a class="product-card" href="/produtos/<%= produto.id_produto %>">
+                    <div class="card-image-box">
+                        <button class="btn-fav">
+                            <i data-lucide="heart" size="18"></i>
+                        </button>
+                        <img src="https://images.unsplash.com/photo-1764866557865-1f4e4060211f?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-category"><%= produto.categoria.nome %></span>
+                        <h3 class="card-title"><%= produto.nome %></h3>
+                        <div class="card-footer">
+                            <span class="card-price">R$ <%= produto.preco %></span>
+                            <button class="btn-add">
+                                <i data-lucide="plus" size="20"></i>
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            <% }); %>
         </section>
 
         <script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="/css/produto.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header>
+        <button class="icon-btn">
+            <i data-lucide="arrow-left" size="24"></i>
+        </button>
+        <span class="header-title">Detalhes</span>
+        <button class="icon-btn">
+            <i data-lucide="heart" size="24"></i>
+        </button>
+    </header>
+
+    <section class="product-hero">
+        <div class="badges-container">
+            <div class="badge novo">
+                <i data-lucide="sparkles" size="14"></i>
+                Novo
+            </div>
+            <div class="badge premium">
+                <i data-lucide="trophy" size="14"></i>
+                Premium
+            </div>
+        </div>
+        
+        <img src="<%= produto.imagem %>" alt="Poltrona Escandinava">
+    </section>
+
+    <main class="content-sheet">
+        
+        <h1 class="product-title"><%= produto.nome %></h1>
+
+        <div class="rating-row">
+            <div class="stars">
+                <i data-lucide="star" size="16" class="filled-star"></i>
+                <i data-lucide="star" size="16" class="filled-star"></i>
+                <i data-lucide="star" size="16" class="filled-star"></i>
+                <i data-lucide="star" size="16" class="filled-star"></i>
+                <i data-lucide="star" size="16" class="filled-star"></i>
+            </div>
+            <span>(4.9) • 127 avaliações</span>
+        </div>
+
+        <div class="price-container">
+            <div class="main-price">R$ <%= produto.preco %></div>
+            <!-- <span class="installment-text">ou 12x de R$ 108,25 sem juros</span> -->
+        </div>
+
+        <div>
+            <h3 class="section-title">Descrição</h3>
+            <p class="description-text">
+                <%= produto.descricao %>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

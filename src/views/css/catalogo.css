@@ -163,13 +163,6 @@ header {
     padding: 0 1.5rem;
 }
 
-.product-card {
-    display: flex;
-    width: 45% ;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
 .image-placeholder {
     background-color: var(--bg-gray);
     width: 100%;
@@ -181,6 +174,126 @@ header {
 .product-card:hover .image-placeholder {
     filter: brightness(0.95);
     transition: 0.2s;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden; /* Garante que a imagem não saia da borda arredondada */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    width: 45% ;
+    gap: 0.5rem;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: #d1d5db;
+}
+
+/* Container da Imagem (Quadrado) */
+.card-image-box {
+    width: 100%;
+    position: relative;
+    padding-top: 100%; /* Aspect Ratio 1:1 */
+    background-color: #f3f4f6;
+}
+
+.card-image-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* A imagem preenche o quadrado sem distorcer */
+    mix-blend-mode: multiply; /* Truque para integrar imagens com fundo branco ao card */
+}
+
+/* Botão de Favorito (Coração) */
+.btn-fav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #9CA3AF;
+    transition: 0.2s;
+    z-index: 2;
+}
+
+.btn-fav:hover {
+    color: #EF4444; /* Vermelho ao passar o mouse */
+    background: #FEF2F2;
+}
+
+/* Conteúdo do Card */
+.card-details {
+    padding: 0.8rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    /* Limita o texto a 1 linha com "..." se for muito grande */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+/* Linha de Preço e Ação */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.card-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.btn-add {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px; /* Quadrado levemente arredondado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #163C28; /* Verde um pouco mais escuro */
 }
 
 @media (min-width: 768px) {
