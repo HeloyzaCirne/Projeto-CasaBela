@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
             categoria: true,
         },
     });
-    console.log(products);
     res.render("catalogo", { produtos: products });
 })
 
@@ -23,7 +22,6 @@ router.get("/:id", async (req, res) => {
             categoria: true,
         },
     });
-    console.log(product);
     res.render("produto", { produto: product });
 })
 

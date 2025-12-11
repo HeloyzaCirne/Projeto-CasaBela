@@ -4,8 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Minha Conta - Meus Pedidos</title>
-        <link rel="stylesheet" href="css/usuario.css">
+        <link rel="stylesheet" href="/css/usuario.css">
         <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="/js/usuario.js" defer></script>
     </head>
     <body>
         <header>
@@ -24,20 +25,30 @@
             <div class="avatar">
                 <i data-lucide="user" size="32"></i>
             </div>
-            <div class="profile-info">
-                <h2>Maria Silva</h2>
-                <p>maria.silva@email.com</p>
-                <!-- <p class="subtitle">Cliente desde Janeiro 2023</p> Por deslogar ou editar aqui -->
-            </div>
+            <% if (usuario) { %>
+                <div class="profile-info">
+                    <h2><%= usuario.nome %></h2>
+                    <p><%= usuario.email %></p>
+                    <!-- <p class="subtitle">Cliente desde Janeiro 2023</p> Por deslogar ou editar aqui -->
+                </div>
+            <% } else { %>
+                <div class="profile-info">
+                    <h2>Bem-vindo!</h2>
+                    <p>Faça login ou cadastre-se para continuar.</p>
+                </div>
+            <% } %>
         </section>
 
         <nav class="tabs">
-            <button class="tab-btn">Histórico</button>
-            <button class="tab-btn active">Entrar/Cadastrar</button>
+            <button class="tab-btn" id="tab-history">Histórico</button>
+            <button class="tab-btn" id="tab-login">Entrar/Cadastrar</button>
+            <% if (usuario) { %>
+                <button class="tab-btn" id="tab-update">Editar</button>
+            <% } %>
         </nav>
 
-        <main class="user-container">
-            <form class="login-container">
+        <main class="user-container" style="display: none;">
+            <form class="login-container" action="/usuario/login" method="post">
                 <div class="section-header">
                     <h1>Entrar</h1>
                 </div>
@@ -46,18 +57,20 @@
                     <input
                         type="text"
                         placeholder="Email"
+                        name="email"
                     />
                 </div>
                 <div class="search-bar">
                     <i data-lucide="hash" color="#999" size="20"></i>
                     <input
-                        type="text"
+                        type="password"
                         placeholder="Senha"
+                        name="senha"
                     />
                 </div>
                 <button class="btn-login">Entrar</button>
             </form>
-            <form class="login-container">
+            <form class="login-container" action="/usuario/create" method="post">
                 <div class="section-header">
                     <h1>Cadastrar</h1>
                 </div>
@@ -66,6 +79,7 @@
                     <input
                         type="text"
                         placeholder="Nome de usuário"
+                        name="nome"
                     />
                 </div>
                 <div class="search-bar">
@@ -73,20 +87,49 @@
                     <input
                         type="text"
                         placeholder="Email"
+                        name="email"
                     />
                 </div>
                 <div class="search-bar">
                     <i data-lucide="hash" color="#999" size="20"></i>
                     <input
-                        type="text"
+                        type="password"
                         placeholder="Senha"
+                        name="senha"
                     />
                 </div>
                 <button class="btn-login">Cadastrar</button>
             </form>
         </main>
 
-        <main class="orders-container">
+        <main class="update-container" style="display: none;">
+            <form class="login-container" action="/usuario/update" method="post">
+                <div class="section-header">
+                    <h1>Editar Conta</h1>
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="smile" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Nome de usuário"
+                        name="nome"
+                        value="<%= usuario.nome %>"
+                        />
+                    </div>
+                    <div class="search-bar">
+                        <i data-lucide="at-sign" color="#999" size="20"></i>
+                        <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value="<%= usuario.email %>"
+                        />
+                </div>
+                <button class="btn-login">Editar</button>
+            </form>
+        </main>
+
+        <main class="orders-container" style="display: none;">
             <div class="section-header">
                 <h3>Meus Pedidos</h3>
                 <a href="#" class="filter-link">Filtrar</a>

@@ -130,10 +130,12 @@ header h1 {
     padding: 1.5rem;
     background-color: var(--bg-light);
     min-height: calc(100vh - 250px);
+    display: none;
+    flex-direction: column;
 }
 
 .user-container {
-    display: flex;
+    display: none;
     justify-content: space-between;
     background-color: var(--bg-light);
 }

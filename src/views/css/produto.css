@@ -185,3 +185,17 @@ header {
     font-weight: 700;
     color: var(--text-main);
 }
+
+.btn-add {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px; /* Quadrado levemente arredondado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}

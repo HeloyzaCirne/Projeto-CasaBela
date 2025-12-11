@@ -1,9 +1,27 @@
+import { UserController } from "../controllers/user.controller";
 import { Router } from "express";
 
 const router = Router();
+const userController = new UserController();
 
 router.get("/", (req, res) => {
-    res.render('usuario')
+    userController.show(req, res);
+})
+
+router.get("/:id", (req, res) => {
+    userController.show(req, res);
+})
+
+router.post("/create", (req, res) => {
+    userController.store(req, res);
+})
+
+router.post("/login", (req, res) => {
+    userController.login(req, res);
+})
+
+router.post("/update", (req, res) => {
+    userController.update(req, res);
 })
 
 export default router;
