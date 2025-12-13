@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide all containers
         ordersContainer.style.display = 'none';
         userContainer.style.display = 'none';
-        updateContainer.style.display = 'none';
+        updateContainer ? updateContainer.style.display = 'none' : null;
 
         // Deactivate all buttons
         tabHistory.classList.remove('active');
         tabLogin.classList.remove('active');
-        tabUpdate.classList.remove('active');
+        tabUpdate ? tabUpdate.classList.remove('active') : null;
 
         // Show the selected container
         containerToShow.style.display = 'flex'; // Assuming flex for layout
@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showContainer(userContainer, tabLogin);
     });
     
-    tabUpdate.addEventListener('click', () => {
+    tabUpdate ? tabUpdate.addEventListener('click', () => {
         showContainer(updateContainer, tabUpdate);
-    });
+    }): null;
+    
 
     // Initial state: Show user-container by default
     showContainer(ordersContainer, tabHistory);

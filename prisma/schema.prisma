@@ -23,6 +23,7 @@ model usuarios {
   pedidos    pedidos[]
   avaliacoes avaliacoes[]
   favoritos  favoritos[]
+  carrinho   carrinho[]
 }
 
 model categorias {
@@ -43,6 +44,7 @@ model produtos {
   itensPedido  itens_pedido[]
   avaliacoes   avaliacoes[]
   favoritos    favoritos[]
+  carrinho     carrinho[]
 }
 
 model pedidos {
@@ -80,6 +82,15 @@ model favoritos {
   id_favorito Int      @id @default(autoincrement())
   id_usuario  Int
   id_produto  Int
+  usuario     usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  produto     produtos @relation(fields: [id_produto], references: [id_produto])
+}
+
+model carrinho {
+  id_carinho  Int      @id @default(autoincrement())
+  id_usuario  Int
+  id_produto  Int
+  quantidade  Int
   usuario     usuarios @relation(fields: [id_usuario], references: [id_usuario])
   produto     produtos @relation(fields: [id_produto], references: [id_produto])
 }

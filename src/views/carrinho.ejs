@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho</title>
+    <link rel="stylesheet" href="/css/carrinho.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header>
+        <button class="icon-btn">
+            <i data-lucide="arrow-left" size="24"></i>
+        </button>
+        <h1>Meu Carrinho</h1>
+        <button class="icon-btn">
+            <i data-lucide="menu" size="24"></i>
+        </button>
+    </header>
+
+    <main class="cart-container">
+        <% produtos.forEach( function(produto) { %>
+        <article class="cart-card">
+            <div class="card-top">
+                <div class="item-image">
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=150&q=80" alt="Poltrona">
+                </div>
+                <div class="item-details">
+                    <h3 class="item-title"> <%= produto.produto.nome %> </h3>
+                    <span class="item-unit-price">R$ <%= produto.produto.preco %></span>
+                </div>
+                <button class="btn-delete">
+                    <i data-lucide="trash-2" size="18"></i>
+                </button>
+            </div>
+            
+            <div class="card-bottom">
+                <div class="qty-control">
+                    <button class="qty-btn minus">
+                        <i data-lucide="minus" size="16"></i>
+                    </button>
+                    <span class="qty-value"><%= produto.quantidade %></span>
+                    <button class="qty-btn plus">
+                        <i data-lucide="plus" size="16"></i>
+                    </button>
+                </div>
+                <div class="item-total">R$ <%= Number(produto.produto.preco) * Number(produto.quantidade) %></div>
+            </div>
+        </article>
+        <% }); %>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

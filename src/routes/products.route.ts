@@ -1,28 +1,25 @@
+import { ProductController } from "../controllers/product.controller";
 import { prisma } from "../prisma";
 import { Router } from "express";
 
 const router = Router();
+const productController = new ProductController();
 
 router.get("/", async (req, res) => {
-    const products = await prisma.produtos.findMany({
-        include: {
-            categoria: true,
-        },
-    });
-    res.render("catalogo", { produtos: products });
+    productController.showAll(req, res);
+});
+
+router.get("/carrinho", async (req, res) => {
+    productController.showCart(req, res);
+})
+
+router.get("/carrinho/adicionar/:id", async (req, res) => {
+    productController.addToCart(req, res);
 })
 
 router.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    const product = await prisma.produtos.findUnique({
-        where: {
-            id_produto: Number(id),
-        },
-        include: {
-            categoria: true,
-        },
-    });
-    res.render("produto", { produto: product });
+    productController.show(req, res);
 })
+
 
 export default router;

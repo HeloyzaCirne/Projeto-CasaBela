@@ -107,24 +107,26 @@
                 <div class="section-header">
                     <h1>Editar Conta</h1>
                 </div>
+                <% if (usuario) { %>
                 <div class="search-bar">
-                    <i data-lucide="smile" color="#999" size="20"></i>
-                    <input
-                        type="text"
-                        placeholder="Nome de usuário"
-                        name="nome"
-                        value="<%= usuario.nome %>"
-                        />
-                    </div>
-                    <div class="search-bar">
-                        <i data-lucide="at-sign" color="#999" size="20"></i>
-                        <input
-                        type="text"
-                        placeholder="Email"
-                        name="email"
-                        value="<%= usuario.email %>"
-                        />
+                <i data-lucide="smile" color="#999" size="20"></i>
+                <input
+                    type="text"
+                    placeholder="Nome de usuário"
+                    name="nome"
+                    value="<%= usuario.nome %>"
+                    />
                 </div>
+                <div class="search-bar">
+                    <i data-lucide="at-sign" color="#999" size="20"></i>
+                    <input
+                    type="text"
+                    placeholder="Email"
+                    name="email"
+                    value="<%= usuario.email %>"
+                    />
+                </div>
+                <% } %>
                 <button class="btn-login">Editar</button>
             </form>
         </main>

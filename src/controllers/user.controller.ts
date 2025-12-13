@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '../../generated/prisma';
-import bcrypt from 'bcryptjs';
+import { prisma } from '../prisma';
 import jwt from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
+import bcrypt from 'bcryptjs';
 
 export class UserController {
     async store(req: Request, res: Response) {

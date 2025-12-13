@@ -1,0 +1,191 @@
+:root {
+    --primary-green: #1F4E34;
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --bg-body: #F9FAFB; /* Fundo cinza claro da página inteira */
+    --bg-card: #FFFFFF;
+    --bg-gray-btn: #F3F4F6;
+    --border-color: #E5E7EB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    padding-bottom: 2rem;
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+}
+
+/* --- CART LIST --- */
+.cart-container {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* --- CART CARD --- */
+.cart-card {
+    background-color: var(--bg-card);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Topo do Card (Imagem + Infos + Delete) */
+.card-top {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+}
+
+.item-image {
+    width: 70px;
+    height: 70px;
+    background-color: var(--bg-gray-btn);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0; /* Impede a imagem de esmagar */
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-right: 2rem; /* Espaço para o ícone de lixeira não ficar em cima do texto */
+}
+
+.item-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.item-specs {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.item-unit-price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-top: 0.2rem;
+}
+
+.btn-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0.2rem;
+}
+
+.btn-delete:hover {
+    color: #EF4444; /* Vermelho no hover */
+}
+
+/* Base do Card (Quantidade + Total) */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid transparent; /* Pode usar #F3F4F6 se quiser separar visualmente */
+}
+
+/* Controles de Quantidade */
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qty-btn.minus {
+    background-color: var(--bg-gray-btn);
+    color: var(--text-main);
+}
+
+.qty-btn.plus {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-value {
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 1rem;
+    text-align: center;
+}
+
+/* Preço Total do Item */
+.item-total {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-main);
+}
