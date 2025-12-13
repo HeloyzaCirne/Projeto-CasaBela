@@ -87,6 +87,8 @@ header h1 {
 .profile-info .subtitle {
     font-size: 0.8rem;
     margin-top: 0.2rem;
+    font-weight: bold;
+    color: red;
 }
 
 /* --- TABS --- */
@@ -151,6 +153,25 @@ header h1 {
     /* Preenche o resto da tela */
 }
 
+.update-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    min-height: calc(100vh - 250px);
+    gap: 1rem;
+    width: 100%;
+    /* Preenche o resto da tela */
+}
+
+.update-container > a {
+    width: 100%;
+}
+
+.update-container > a > .btn-login {
+    background-color: red;
+    width: 100%
+}
 
 .search-bar {
     background-color: white;

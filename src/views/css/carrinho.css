@@ -189,3 +189,14 @@ header h1 {
     font-size: 1rem;
     color: var(--text-main);
 }
+
+.btn-login {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}

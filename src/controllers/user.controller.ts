@@ -61,7 +61,7 @@ export class UserController {
         const token = req.cookies.token;
         const { id } = jwt.decode(token) as { id: number; email: string };
         const usuario = await prisma.usuarios.findUnique({
-            where: { id_usuario: Number(id) },
+            where: { id_usuario: Number(id), ativo: true },
         });
         res.render('usuario', { usuario });
     }
@@ -78,18 +78,28 @@ export class UserController {
         });
         res.render('usuario', { usuario });
     }
-    // async remove(req: Request, res: Response) {
-    //     const id = req.params.id;
-    //     const usuario = await prisma.user.delete({ where: { id } });
-    //     res.redirect('/');
-    // }
 
-    // async removeSoft(req: Request, res: Response) {
-    //     const id = req.params.id;
-    //     const usuario = await prisma.user.update({
-    //         data: { deleted: true },
-    //         where: { id },
-    //     });
-    //     res.redirect('/');
-    // }
+    async logout(req: Request, res: Response) {
+        res.clearCookie('token');
+        res.redirect('/usuario');
+    }
+
+    async remove(req: Request, res: Response) {
+        const token = req.cookies.token;
+        const { id } = jwt.decode(token) as { id: number; email: string };
+        const usuario = await prisma.usuarios.delete({
+            where: { id_usuario: Number(id) },
+        });
+        res.clearCookie('token').redirect('/');
+    }
+
+    async removeSoft(req: Request, res: Response) {
+        const token = req.cookies.token;
+        const { id } = jwt.decode(token) as { id: number; email: string };
+        const usuario = await prisma.usuarios.update({
+            data: { ativo: false },
+            where: { id_usuario: Number(id) },
+        });
+        res.clearCookie('token').redirect('/');
+    }
 }

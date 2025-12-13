@@ -15,11 +15,12 @@ datasource db {
 }
 
 model usuarios {
-  id_usuario Int    @id @default(autoincrement())
-  email      String @unique
+  id_usuario Int          @id @default(autoincrement())
+  email      String       @unique
   nome       String
   tipo       String
   senha      String
+  ativo      Boolean      @default(true)
   pedidos    pedidos[]
   avaliacoes avaliacoes[]
   favoritos  favoritos[]
@@ -33,14 +34,14 @@ model categorias {
 }
 
 model produtos {
-  id_produto   Int        @id @default(autoincrement())
+  id_produto   Int            @id @default(autoincrement())
   nome         String
   descricao    String?
   preco        Int
   estoque      Int
   id_categoria Int
   imagem       String
-  categoria    categorias @relation(fields: [id_categoria], references: [id])
+  categoria    categorias     @relation(fields: [id_categoria], references: [id])
   itensPedido  itens_pedido[]
   avaliacoes   avaliacoes[]
   favoritos    favoritos[]
@@ -48,34 +49,34 @@ model produtos {
 }
 
 model pedidos {
-  id_pedido    Int           @id @default(autoincrement())
-  id_usuario   Int
-  data_pedido  DateTime
-  status       String
-  valor_total  Int
-  usuario      usuarios      @relation(fields: [id_usuario], references: [id_usuario])
-  itens        itens_pedido[]
+  id_pedido   Int            @id @default(autoincrement())
+  id_usuario  Int
+  data_pedido DateTime       @default(now())
+  status      String
+  valor_total Int
+  usuario     usuarios       @relation(fields: [id_usuario], references: [id_usuario])
+  itens       itens_pedido[]
 }
 
 model itens_pedido {
-  id_item        Int        @id @default(autoincrement())
+  id_item        Int      @id @default(autoincrement())
   id_pedido      Int
   id_produto     Int
   quantidade     Int
   preco_unitario Int
-  pedido         pedidos    @relation(fields: [id_pedido], references: [id_pedido])
-  produto        produtos   @relation(fields: [id_produto], references: [id_produto])
+  pedido         pedidos  @relation(fields: [id_pedido], references: [id_pedido])
+  produto        produtos @relation(fields: [id_produto], references: [id_produto])
 }
 
 model avaliacoes {
-  id_avaliacao Int       @id @default(autoincrement())
+  id_avaliacao Int      @id @default(autoincrement())
   id_usuario   Int
   id_produto   Int
   nota         Int
   comentario   String?
   data         DateTime
-  usuario      usuarios  @relation(fields: [id_usuario], references: [id_usuario])
-  produto      produtos  @relation(fields: [id_produto], references: [id_produto])
+  usuario      usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  produto      produtos @relation(fields: [id_produto], references: [id_produto])
 }
 
 model favoritos {
@@ -87,7 +88,7 @@ model favoritos {
 }
 
 model carrinho {
-  id_carinho  Int      @id @default(autoincrement())
+  id_carrinho Int      @id @default(autoincrement())
   id_usuario  Int
   id_produto  Int
   quantidade  Int

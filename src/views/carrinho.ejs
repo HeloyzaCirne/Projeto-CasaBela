@@ -24,32 +24,32 @@
         <article class="cart-card">
             <div class="card-top">
                 <div class="item-image">
-                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=150&q=80" alt="Poltrona">
+                    <img src="<%= produto.produto.imagem %>" alt="Poltrona">
                 </div>
                 <div class="item-details">
                     <h3 class="item-title"> <%= produto.produto.nome %> </h3>
                     <span class="item-unit-price">R$ <%= produto.produto.preco %></span>
                 </div>
-                <button class="btn-delete">
+                <a href="/produtos/carrinho/remover/<%= produto.id_carrinho %>" class="btn-delete">
                     <i data-lucide="trash-2" size="18"></i>
-                </button>
+                </a>
             </div>
             
             <div class="card-bottom">
                 <div class="qty-control">
-                    <button class="qty-btn minus">
+                    <a href="/produtos/carrinho/diminuir/<%= produto.id_carrinho %>" class="qty-btn minus">
                         <i data-lucide="minus" size="16"></i>
-                    </button>
+                    </a>
                     <span class="qty-value"><%= produto.quantidade %></span>
-                    <button class="qty-btn plus">
+                    <a href="/produtos/carrinho/adicionar/<%= produto.produto.id_produto %>" class="qty-btn plus">
                         <i data-lucide="plus" size="16"></i>
-                    </button>
+                    </a>
                 </div>
                 <div class="item-total">R$ <%= Number(produto.produto.preco) * Number(produto.quantidade) %></div>
             </div>
         </article>
         <% }); %>
-
+        <button class="btn-login">Fechar Compra</button>
     </main>
 
     <script>

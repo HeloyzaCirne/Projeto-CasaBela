@@ -29,7 +29,7 @@
                 <div class="profile-info">
                     <h2><%= usuario.nome %></h2>
                     <p><%= usuario.email %></p>
-                    <!-- <p class="subtitle">Cliente desde Janeiro 2023</p> Por deslogar ou editar aqui -->
+                    <a href="/usuario/logout" class="subtitle">Sair</a>
                 </div>
             <% } else { %>
                 <div class="profile-info">
@@ -127,8 +127,11 @@
                     />
                 </div>
                 <% } %>
-                <button class="btn-login">Editar</button>
+                <button type="submit" class="btn-login">Editar</button>
             </form>
+            <a href="/usuario/remove">
+                <button class="btn-login">Apagar Conta</button>
+            </a>
         </main>
 
         <main class="orders-container" style="display: none;">
