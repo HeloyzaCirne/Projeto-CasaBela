@@ -32,91 +32,66 @@
             <button class="nav-pill active">Dashboard</button>
             <button class="nav-pill inactive">Produtos</button>
             <button class="nav-pill inactive">Pedidos</button>
-            <a href="/usuario/logout" class="nav-pill red">Sair</a>
+            <a href="/usuario/logout" class="exit-pill red">Sair</a>
         </nav>
 
         <main id="dashboard">
             <section class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-label">Total Produtos</span>
-                    <div class="icon-box blue">
-                        <i data-lucide="package" size="18"></i>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Produtos</span>
+                        <div class="icon-box blue">
+                            <i data-lucide="package" size="18"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-value"><%= dashboard.produtos %></div>
-                <!-- <span class="stat-growth">+12 este mês</span> -->
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-label">Estoque total</span>
-                    <div class="icon-box pink">
-                        <i data-lucide="warehouse" size="18"></i>
-                    </div>
-                </div>
-                <div class="stat-value"><%= dashboard.estoque %></div>
-                <!-- <span class="stat-growth">+12 este mês</span> -->
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-label">Total de Pedidos</span>
-                    <div class="icon-box purple">
-                        <i data-lucide="shopping-cart" size="18"></i>
-                    </div>
-                </div>
-                <div class="stat-value"><%= dashboard.pedidos %></div>
-                <!-- <span class="stat-growth">+3 vs ontem</span> -->
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-label">Receita Total</span>
-                    <div class="icon-box green">
-                        <i data-lucide="dollar-sign" size="18"></i>
-                    </div>
-                </div>
-                <div class="stat-value">R$ <%= dashboard.receita %></div>
-                <!-- <span class="stat-growth">+15.3% vs mês anterior</span> -->
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-label">Clientes Ativos</span>
-                    <div class="icon-box orange">
-                        <i data-lucide="users" size="18"></i>
-                    </div>
-                </div>
-                <div class="stat-value"><%= dashboard.clientes %></div>
-                <!-- <span class="stat-growth">+8.2% este mês</span> -->
-            </div>
-        </section>
-            <section class="recent-activity">
-            <h3 class="section-title">Atividade Recente</h3>
-            
-            <div class="activity-list">
-                <div class="activity-item">
-                    <div class="activity-icon order">
-                        <i data-lucide="check" size="20"></i>
-                    </div>
-                    <div class="activity-info">
-                        <span class="activity-text">Novo pedido #PED-2024-156</span>
-                        <span class="activity-time">há 5 minutos</span>
-                    </div>
+                    <div class="stat-value"><%= dashboard.produtos %></div>
+                    <!-- <span class="stat-growth">+12 este mês</span> -->
                 </div>
 
-                <div class="activity-item">
-                    <div class="activity-icon update">
-                        <i data-lucide="box" size="20"></i>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Estoque total</span>
+                        <div class="icon-box pink">
+                            <i data-lucide="warehouse" size="18"></i>
+                        </div>
                     </div>
-                    <div class="activity-info">
-                        <span class="activity-text">Produto "Mesa Redonda" atualizado</span>
-                        <span class="activity-time">há 12 minutos</span>
-                    </div>
+                    <div class="stat-value"><%= dashboard.estoque %></div>
+                    <!-- <span class="stat-growth">+12 este mês</span> -->
                 </div>
-            </div>
-        </section>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total de Pedidos</span>
+                        <div class="icon-box purple">
+                            <i data-lucide="shopping-cart" size="18"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value"><%= dashboard.pedidos %></div>
+                    <!-- <span class="stat-growth">+3 vs ontem</span> -->
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Receita Total</span>
+                        <div class="icon-box green">
+                            <i data-lucide="dollar-sign" size="18"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">R$ <%= dashboard.receita %></div>
+                    <!-- <span class="stat-growth">+15.3% vs mês anterior</span> -->
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Clientes Ativos</span>
+                        <div class="icon-box orange">
+                            <i data-lucide="users" size="18"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value"><%= dashboard.clientes %></div>
+                    <!-- <span class="stat-growth">+8.2% este mês</span> -->
+                </div>
+            </section>
         </main>
 
         <main id="product-management">
@@ -269,9 +244,26 @@
         </main>
 
         <main id="orders-list">
+            <% pedidos.forEach( function(pedido) { %>
+            <div class="order-card">
+                <div class="card-top">
+                    <div>
+                        <div class="order-id"><%= pedido.id_pedido %></div>
+                        <div class="order-date"><%= pedido.data_pedido.toLocaleString() %></div>
+                    </div>
+                    <span class="badge blue"><%= pedido.status %></span>
+                </div>
+                
+                <div class="card-products">
+                    <p class="order-date"><%= pedido.itens.map(item => `${item.quantidade} x ${item.produto.nome}`).join(', ') %></p>
+                </div>
 
+                <div class="card-footer">
+                    <span class="price">R$ <%= pedido.valor_total %></span>
+                </div>
+            </div>
+            <% }) %>
         </main>
-
         <script>
             lucide.createIcons();
         </script>

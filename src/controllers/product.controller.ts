@@ -84,7 +84,7 @@ export class ProductController {
     
     async showCart(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const token = req.cookies.token;
         const userId = (jwt.decode(token) as { id: number; email: string }).id;
@@ -103,7 +103,7 @@ export class ProductController {
 
     async addToCart(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const token = req.cookies.token;
         const userId = (jwt.decode(token) as { id: number; email: string }).id;
@@ -147,7 +147,7 @@ export class ProductController {
 
     async removeFromCart(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const productCartId = req.params.id;
         const product = await prisma.carrinho.delete({
@@ -160,7 +160,7 @@ export class ProductController {
 
     async removeOneFromCart(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const productCartId = req.params.id;
         const product = await prisma.carrinho.update({

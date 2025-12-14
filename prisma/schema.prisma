@@ -63,7 +63,6 @@ model itens_pedido {
   id_pedido      Int
   id_produto     Int
   quantidade     Int
-  preco_unitario Int
   pedido         pedidos  @relation(fields: [id_pedido], references: [id_pedido])
   produto        produtos @relation(fields: [id_produto], references: [id_produto])
 }

@@ -1,4 +1,5 @@
 import productsRouter from './routes/products.route';
+import ordersRouter from './routes/orders.route';
 import usersRouter from './routes/users.route';
 import express from 'express';
 import path from 'path';
@@ -14,13 +15,10 @@ app.use('/js', express.static(path.join(__dirname, 'views', 'js')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-/*
-app.use(express.static("public"));
-*/
-// app.use("/api", productsRouter);
 
 app.use("/usuario", usersRouter);
 app.use("/produtos", productsRouter);
+app.use("/pedidos", ordersRouter);
 
 app.get('/', (req, res) => {
     res.render('index');

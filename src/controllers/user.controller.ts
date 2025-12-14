@@ -19,7 +19,7 @@ export class UserController {
                 tipo: 'cliente',
             },
         });
-        res.render('usuario', { usuario: null });
+        res.redirect('/usuario');
     }
 
     async login(req: Request, res: Response) {
@@ -77,7 +77,7 @@ export class UserController {
 
     async show(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.render('usuario', { usuario: null, pedidos: [] });
         }
         const token = req.cookies.token;
         const { id } = jwt.decode(token) as { id: number | string; email: string };
@@ -87,12 +87,22 @@ export class UserController {
         const usuario = await prisma.usuarios.findUnique({
             where: { id_usuario: Number(id), ativo: true },
         });
-        res.render('usuario', { usuario });
+        const pedidos = await prisma.pedidos.findMany({
+            where: { id_usuario: Number(id) },
+            include: {
+                itens: {
+                    include: {
+                        produto: true,
+                    },
+                },
+            },
+        });
+        res.render('usuario', { usuario, pedidos });
     }
 
     async update(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const token = req.cookies.token;
         const { id } = jwt.decode(token) as { id: number; email: string };
@@ -100,7 +110,7 @@ export class UserController {
             data: req.body,
             where: { id_usuario: Number(id) },
         });
-        res.render('usuario', { usuario });
+        res.redirect('/usuario');
     }
 
     async logout(req: Request, res: Response) {
@@ -129,7 +139,7 @@ export class UserController {
 
     async showAdm(req: Request, res: Response) {
         if (!req.cookies.token) {
-            return res.render('usuario', { usuario: null });
+            return res.redirect('/usuario');
         }
         const token = req.cookies.token;
         const { email } = jwt.decode(token) as { id: number; email: string };
@@ -142,7 +152,15 @@ export class UserController {
                 categoria: true,
             },
         });
-        const pedidos = await prisma.pedidos.findMany();
+        const pedidos = await prisma.pedidos.findMany({
+            include: {
+                itens: {
+                    include: {
+                        produto: true,
+                    },
+                },
+            },
+        });
 
         const estoque = produtos.reduce((total, produto) => total + produto.estoque, 0);
         const receita = pedidos.reduce((total, pedido) => total + pedido.valor_total, 0);
@@ -153,6 +171,6 @@ export class UserController {
             pedidos: pedidos.length,
             receita: receita
         }
-        res.render('adm', { produtos, dashboard });
+        res.render('adm', { produtos, dashboard, pedidos });
     }   
 }

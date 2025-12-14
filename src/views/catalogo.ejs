@@ -57,9 +57,6 @@
             <% produtos.forEach( function(produto) { %>
                 <a class="product-card" href="/produtos/<%= produto.id_produto %>">
                     <div class="card-image-box">
-                        <button class="btn-fav">
-                            <i data-lucide="heart" size="18"></i>
-                        </button>
                         <img src="<%= produto.imagem %>" alt="">
                     </div>
                     <div class="card-details">

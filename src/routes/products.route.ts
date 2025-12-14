@@ -1,5 +1,4 @@
 import { ProductController } from "../controllers/product.controller";
-import { prisma } from "../prisma";
 import { Router } from "express";
 
 const router = Router();

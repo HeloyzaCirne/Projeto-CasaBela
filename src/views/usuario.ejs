@@ -139,51 +139,25 @@
                 <h3>Meus Pedidos</h3>
                 <a href="#" class="filter-link">Filtrar</a>
             </div>
-
+            <% pedidos.forEach( function(pedido) { %>
             <div class="order-card">
                 <div class="card-top">
                     <div>
-                        <div class="order-id">PED-2024-001</div>
-                        <div class="order-date">15 Jan 2024</div>
+                        <div class="order-id"><%= pedido.id_pedido %></div>
+                        <div class="order-date"><%= pedido.data_pedido.toLocaleString() %></div>
                     </div>
-                    <span class="badge delivered">Entregue</span>
+                    <span class="badge sent"><%= pedido.status %></span>
                 </div>
-
+                
                 <div class="card-products">
-                    <div class="product-thumb">
-                        <i data-lucide="armchair" size="18"></i>
-                    </div>
-                    <div class="product-thumb">
-                        <i data-lucide="table-2" size="18"></i>
-                    </div>
+                    <p class="order-date"><%= pedido.itens.map(item => `${item.quantidade} x ${item.produto.nome}`).join(', ') %></p>
                 </div>
 
                 <div class="card-footer">
-                    <span class="price">R$ 2.769</span>
-                    <button class="btn-details">Ver detalhes</button>
+                    <span class="price">R$ <%= pedido.valor_total %></span>
                 </div>
             </div>
-
-            <div class="order-card">
-                <div class="card-top">
-                    <div>
-                        <div class="order-id">PED-2024-002</div>
-                        <div class="order-date">28 Jan 2024</div>
-                    </div>
-                    <span class="badge sent">Enviado</span>
-                </div>
-
-                <div class="card-products">
-                    <div class="product-thumb">
-                        <i data-lucide="lamp" size="18"></i>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <span class="price">R$ 1.450</span>
-                    <button class="btn-details">Ver detalhes</button>
-                </div>
-            </div>
+            <% }) %>
         </main>
 
         <script>
