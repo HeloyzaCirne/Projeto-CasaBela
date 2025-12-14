@@ -34,7 +34,7 @@ router.post("/atualizar/:id", async (req, res) => {
 })
 
 router.get("/remover/:id", async (req, res) => {
-    productController.remove(req, res);
+    productController.removeSoft(req, res);
 })
 
 router.get("/:id", async (req, res) => {

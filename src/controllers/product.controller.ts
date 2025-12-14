@@ -45,7 +45,7 @@ export class ProductController {
         res.redirect('/usuario/adm');
     }
 
-    async remove(req: Request, res: Response) {
+    async removeSoft(req: Request, res: Response) {
         const productId = req.params.id;
 
         await prisma.produtos.update({
@@ -62,6 +62,9 @@ export class ProductController {
 
     async showAll(req: Request, res: Response) {
         const products = await prisma.produtos.findMany({
+            where: {
+                ativo: true
+            },
             include: {
                 categoria: true,
             },
@@ -184,18 +187,4 @@ export class ProductController {
 
         res.redirect('/produtos/carrinho');
     }
-    // async remove(req: Request, res: Response) {
-    //     const id = req.params.id;
-    //     const usuario = await prisma.user.delete({ where: { id } });
-    //     res.redirect('/');
-    // }
-
-    // async removeSoft(req: Request, res: Response) {
-    //     const id = req.params.id;
-    //     const usuario = await prisma.user.update({
-    //         data: { deleted: true },
-    //         where: { id },
-    //     });
-    //     res.redirect('/');
-    // }
 }

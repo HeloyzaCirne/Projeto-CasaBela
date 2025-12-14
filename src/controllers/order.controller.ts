@@ -9,6 +9,7 @@ export class OrderController {
         }
         const token = req.cookies.token;
         const userId = (jwt.decode(token) as { id: number; email: string }).id;
+
         const products = await prisma.carrinho.findMany({
             where: {
                 id_usuario: userId,
@@ -49,14 +50,4 @@ export class OrderController {
 
         res.redirect('/usuario');
     }
-
-    async update(req: Request, res: Response) {}
-
-    async remove(req: Request, res: Response) {}
-
-    async showAll(req: Request, res: Response) {}
-
-    async show(req: Request, res: Response) {}
-
-    async showCart(req: Request, res: Response) {}
 }

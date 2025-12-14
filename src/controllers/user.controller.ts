@@ -79,14 +79,17 @@ export class UserController {
         if (!req.cookies.token) {
             return res.render('usuario', { usuario: null, pedidos: [] });
         }
+
         const token = req.cookies.token;
         const { id } = jwt.decode(token) as { id: number | string; email: string };
         if (id === 'adm') {
             return res.redirect('/usuario/adm');
         }
+
         const usuario = await prisma.usuarios.findUnique({
             where: { id_usuario: Number(id), ativo: true },
         });
+
         const pedidos = await prisma.pedidos.findMany({
             where: { id_usuario: Number(id) },
             include: {
@@ -148,6 +151,9 @@ export class UserController {
         }
 
         const produtos = await prisma.produtos.findMany({
+            where: {
+                ativo: true
+            },
             include: {
                 categoria: true,
             },
