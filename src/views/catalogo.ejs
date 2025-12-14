@@ -10,9 +10,9 @@
     </head>
     <body>
         <header>
-            <button class="icon-btn">
-                <i data-lucide="menu" size="24"></i>
-            </button>
+            <a href="/" class="icon-btn">
+                <i data-lucide="arrow-left" size="24"></i>
+            </a>
             <h1 class="header-title">Casa & Decoração</h1>
             <a href="/produtos/carrinho" class="icon-btn">
                 <i data-lucide="shopping-cart" size="18"></i>
@@ -60,7 +60,7 @@
                         <button class="btn-fav">
                             <i data-lucide="heart" size="18"></i>
                         </button>
-                        <img src="https://images.unsplash.com/photo-1764866557865-1f4e4060211f?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                        <img src="<%= produto.imagem %>" alt="">
                     </div>
                     <div class="card-details">
                         <span class="card-category"><%= produto.categoria.nome %></span>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Painel Administrativo</title>
+        <link rel="stylesheet" href="/css/adm.css" />
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="/js/adm.js" defer></script>
+        <style></style>
+    </head>
+    <body>
+        <header>
+            <div class="brand">
+                <div class="brand-icon">
+                    <i data-lucide="star" size="18"></i>
+                </div>
+                <span>Painel Administrativo</span>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn">
+                    <i data-lucide="bell" size="22"></i>
+                </button>
+                <div class="user-avatar">
+                    <i data-lucide="user" size="20"></i>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sub-nav">
+            <button class="nav-pill active">Dashboard</button>
+            <button class="nav-pill inactive">Produtos</button>
+            <button class="nav-pill inactive">Pedidos</button>
+            <a href="/usuario/logout" class="nav-pill red">Sair</a>
+        </nav>
+
+        <main id="dashboard">
+            <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Produtos</span>
+                    <div class="icon-box blue">
+                        <i data-lucide="package" size="18"></i>
+                    </div>
+                </div>
+                <div class="stat-value"><%= dashboard.produtos %></div>
+                <!-- <span class="stat-growth">+12 este mês</span> -->
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Estoque total</span>
+                    <div class="icon-box pink">
+                        <i data-lucide="warehouse" size="18"></i>
+                    </div>
+                </div>
+                <div class="stat-value"><%= dashboard.estoque %></div>
+                <!-- <span class="stat-growth">+12 este mês</span> -->
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total de Pedidos</span>
+                    <div class="icon-box purple">
+                        <i data-lucide="shopping-cart" size="18"></i>
+                    </div>
+                </div>
+                <div class="stat-value"><%= dashboard.pedidos %></div>
+                <!-- <span class="stat-growth">+3 vs ontem</span> -->
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Receita Total</span>
+                    <div class="icon-box green">
+                        <i data-lucide="dollar-sign" size="18"></i>
+                    </div>
+                </div>
+                <div class="stat-value">R$ <%= dashboard.receita %></div>
+                <!-- <span class="stat-growth">+15.3% vs mês anterior</span> -->
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Clientes Ativos</span>
+                    <div class="icon-box orange">
+                        <i data-lucide="users" size="18"></i>
+                    </div>
+                </div>
+                <div class="stat-value"><%= dashboard.clientes %></div>
+                <!-- <span class="stat-growth">+8.2% este mês</span> -->
+            </div>
+        </section>
+            <section class="recent-activity">
+            <h3 class="section-title">Atividade Recente</h3>
+            
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon order">
+                        <i data-lucide="check" size="20"></i>
+                    </div>
+                    <div class="activity-info">
+                        <span class="activity-text">Novo pedido #PED-2024-156</span>
+                        <span class="activity-time">há 5 minutos</span>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon update">
+                        <i data-lucide="box" size="20"></i>
+                    </div>
+                    <div class="activity-info">
+                        <span class="activity-text">Produto "Mesa Redonda" atualizado</span>
+                        <span class="activity-time">há 12 minutos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+
+        <main id="product-management">
+            <form
+                class="login-container"
+                action="/produtos/cadastrar"
+                method="post"
+            >
+                <div class="section-header">
+                    <h1>Cadastrar Produto</h1>
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="package" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Nome"
+                        name="nome"
+                        value=""
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="file-text" color="#999" size="20"></i>
+                    <input
+                        type="text"
+                        placeholder="Descrição"
+                        name="descricao"
+                        value=""
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="layers" color="#999" size="20"></i>
+                    <input
+                        type="number"
+                        placeholder="Estoque inicial"
+                        name="estoque"
+                        value=""
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="tag" color="#999" size="20"></i>
+                    <select name="categoria" class="select-field">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="móveis">Móveis</option>
+                        <option value="decoração">Decoração</option>
+                        <option value="iluminação">Iluminação</option>
+                        <option value="têxtil">Têxtil</option>
+                    </select>
+                </div>
+                <div class="search-bar">
+                    <i
+                        data-lucide="circle-dollar-sign"
+                        color="#999"
+                        size="20"
+                    ></i>
+                    <input
+                        type="number"
+                        placeholder="Preço"
+                        name="preco"
+                        value=""
+                    />
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="link" color="#999" size="20"></i>
+                    <input
+                        type="url"
+                        placeholder="Link da imagem"
+                        name="imagem"
+                        value=""
+                    />
+                </div>
+                <button type="submit" class="btn-login">Cadastrar</button>
+            </form>
+
+            <div class="section-header">
+                <h1>Produtos</h1>
+            </div>
+            <div class="existing-product-container">
+                <% produtos.forEach( function(produto) { %>
+                <form
+                    class="edit-card"
+                    action="/produtos/atualizar/<%= produto.id_produto %>"
+                    method="post"
+                >
+                    <div class="edit-card-top">
+                        <div class="img-upload-wrapper">
+                            <img src="<%= produto.imagem %>" alt="Produto" />
+                            <button
+                                class="btn-upload-overlay"
+                                title="Alterar imagem"
+                            >
+                                <i data-lucide="camera" size="20"></i>
+                            </button>
+                        </div>
+
+                        <div class="edit-fields">
+                            <input
+                                type="text"
+                                class="input-clean input-title"
+                                value="<%= produto.nome %>"
+                                name="nome"
+                            />
+                            <input
+                                type="text"
+                                class="input-clean input-category"
+                                value="<%= produto.categoria.nome %>"
+                                name="categoria"
+                            />
+
+                            <div class="price-wrapper">
+                                <span>R$</span>
+                                <input
+                                    type="number"
+                                    class="input-clean input-price"
+                                    value="<%= produto.preco %>"
+                                    name="preco"
+                                />
+                            </div>
+                        </div>
+
+                        <a
+                            href="/produtos/remover/<%= produto.id_produto %>"
+                            class="btn-remove-item"
+                            title="Excluir produto"
+                        >
+                            <i data-lucide="trash-2" size="18"></i>
+                        </a>
+                    </div>
+
+                    <div class="edit-card-bottom">
+                        <div class="stock-control">
+                            <span class="stock-label">Estoque:</span>
+                            <div class="stock-actions">
+                                <input
+                                    type="number"
+                                    class="input-stock-qty"
+                                    value="<%= produto.estoque %>"
+                                    name="estoque"
+                                />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-save">
+                            <i data-lucide="save" size="16"></i>
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+                <% }) %>
+            </div>
+        </main>
+
+        <main id="orders-list">
+
+        </main>
+
+        <script>
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

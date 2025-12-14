@@ -26,6 +26,27 @@ export class UserController {
         const email = req.body.email;
         const senha = req.body.senha;
 
+        if (email === 'adm' && senha === '123') {
+            const produtos = await prisma.produtos.findMany({
+                include: {
+                    categoria: true,
+                },
+            })
+
+            const token = jwt.sign(
+                { id: 'adm',email: email },
+                process.env.JWT_SECRET || 'secret',
+                { expiresIn: '1h' }
+            );
+
+            res.cookie('token', token, {
+                httpOnly: true,
+                maxAge: 3600000, // 1 hour
+            });
+
+            return res.redirect('/usuario/adm');
+        }
+
         const usuario = await prisma.usuarios.findUnique({
             where: {
                 email: email,
@@ -59,7 +80,10 @@ export class UserController {
             return res.render('usuario', { usuario: null });
         }
         const token = req.cookies.token;
-        const { id } = jwt.decode(token) as { id: number; email: string };
+        const { id } = jwt.decode(token) as { id: number | string; email: string };
+        if (id === 'adm') {
+            return res.redirect('/usuario/adm');
+        }
         const usuario = await prisma.usuarios.findUnique({
             where: { id_usuario: Number(id), ativo: true },
         });
@@ -102,4 +126,33 @@ export class UserController {
         });
         res.clearCookie('token').redirect('/');
     }
+
+    async showAdm(req: Request, res: Response) {
+        if (!req.cookies.token) {
+            return res.render('usuario', { usuario: null });
+        }
+        const token = req.cookies.token;
+        const { email } = jwt.decode(token) as { id: number; email: string };
+        if (email !== 'adm') {
+            return res.redirect('/usuario');
+        }
+
+        const produtos = await prisma.produtos.findMany({
+            include: {
+                categoria: true,
+            },
+        });
+        const pedidos = await prisma.pedidos.findMany();
+
+        const estoque = produtos.reduce((total, produto) => total + produto.estoque, 0);
+        const receita = pedidos.reduce((total, pedido) => total + pedido.valor_total, 0);
+        const dashboard = {
+            produtos: produtos.length,
+            clientes: await prisma.usuarios.count(),
+            estoque: estoque,
+            pedidos: pedidos.length,
+            receita: receita
+        }
+        res.render('adm', { produtos, dashboard });
+    }   
 }

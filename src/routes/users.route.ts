@@ -28,6 +28,10 @@ router.get("/remove", (req, res) => {
     userController.removeSoft(req, res);
 })
 
+router.get("/adm", (req, res) => {
+    userController.showAdm(req, res);
+})
+
 router.get("/:id", (req, res) => {
     userController.show(req, res);
 })

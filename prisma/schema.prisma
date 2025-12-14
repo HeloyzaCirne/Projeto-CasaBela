@@ -28,8 +28,7 @@ model usuarios {
 }
 
 model categorias {
-  id       Int        @id @default(autoincrement())
-  nome     String     @unique
+  nome     String     @id
   produtos produtos[]
 }
 
@@ -39,9 +38,10 @@ model produtos {
   descricao    String?
   preco        Int
   estoque      Int
-  id_categoria Int
+  id_categoria String
   imagem       String
-  categoria    categorias     @relation(fields: [id_categoria], references: [id])
+  ativo        Boolean        @default(true)
+  categoria    categorias     @relation(fields: [id_categoria], references: [nome])
   itensPedido  itens_pedido[]
   avaliacoes   avaliacoes[]
   favoritos    favoritos[]

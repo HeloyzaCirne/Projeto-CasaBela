@@ -81,6 +81,11 @@ header {
     width: 100%;
 }
 
+.subtitle-link {
+    color: white;
+    /* text-decoration: none; */
+}
+
 .hero h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;

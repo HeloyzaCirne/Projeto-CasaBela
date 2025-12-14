@@ -4,7 +4,60 @@ import jwt from 'jsonwebtoken';
 
 export class ProductController {
     async store(req: Request, res: Response) {
-        
+        const { nome, descricao, estoque, categoria, preco, imagem } = req.body;
+
+        await prisma.produtos.create({
+            data: {
+                nome,
+                descricao,
+                estoque: Number(estoque),
+                id_categoria: categoria,
+                preco: Number(preco),
+                imagem: imagem
+            }
+        });
+
+        const produtos = await prisma.produtos.findMany({
+            include: {
+                categoria: true,
+            },
+        });
+        res.redirect('/usuario/adm');
+    }
+
+    async update(req: Request, res: Response) {
+        const productId = req.params.id;
+        const { nome, descricao, estoque, categoria, preco } = req.body;
+
+        const produto = await prisma.produtos.update({
+            data: {
+                nome,
+                descricao,
+                estoque: Number(estoque),
+                id_categoria: categoria,
+                preco: Number(preco),
+            },
+            where: {
+                id_produto: Number(productId),
+            },
+        });
+
+        res.redirect('/usuario/adm');
+    }
+
+    async remove(req: Request, res: Response) {
+        const productId = req.params.id;
+
+        await prisma.produtos.update({
+            where: {
+                id_produto: Number(productId),
+            },
+            data: {
+                ativo: false
+            }
+        });
+
+        res.redirect('/usuario/adm');
     }
 
     async showAll(req: Request, res: Response) {
@@ -29,9 +82,6 @@ export class ProductController {
         res.render("produto", { produto: product });
     }
     
-    async update(req: Request, res: Response) {
-    }
-    
     async showCart(req: Request, res: Response) {
         if (!req.cookies.token) {
             return res.render('usuario', { usuario: null });
@@ -48,7 +98,6 @@ export class ProductController {
                 },
             });
 
-        console.log(products);
         res.render("carrinho", { produtos: products });
     }
 
@@ -59,13 +108,20 @@ export class ProductController {
         const token = req.cookies.token;
         const userId = (jwt.decode(token) as { id: number; email: string }).id;
         const productId = req.params.id;
-        const product = await prisma.carrinho.findFirst({
+        const cartProduct = await prisma.carrinho.findFirst({
             where: {
                 id_usuario: userId,
                 id_produto: Number(productId),
             }
         });
-        if (!product) {
+
+        const product = await prisma.produtos.findUnique({
+            where: {
+                id_produto: Number(productId),
+            }
+        });
+
+        if (!cartProduct) {
             await prisma.carrinho.create({
                 data: {
                     id_usuario: userId,
@@ -75,12 +131,15 @@ export class ProductController {
             });
             return res.redirect('/produtos/carrinho');
         }
+        if (cartProduct.quantidade >= product!.estoque) {
+            return res.redirect('/produtos/carrinho');
+        }
         await prisma.carrinho.update({
             data: {
-                quantidade: product.quantidade + 1,
+                quantidade: cartProduct.quantidade + 1,
             },
             where: {
-                id_carrinho: product.id_carrinho,
+                id_carrinho: cartProduct.id_carrinho,
             }
         });
         res.redirect('/produtos/carrinho');
