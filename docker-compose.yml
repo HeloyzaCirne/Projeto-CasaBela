@@ -1,11 +1,11 @@
 services:
   app:
-    build: .  # Usa o Dockerfile do diret├│rio atual
+    build: .  # Usa o Dockerfile do diretÔö£Ôöério atual
     container_name: casabela_app
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://seu_usuario:sua_senha@db:5432/nome_do_banco?schema=public
+      - DATABASE_URL=postgresql://postgres:1234@db:5432/casa-bela?schema=public
     depends_on:
       - db
     restart: always
@@ -15,8 +15,8 @@ services:
     image: postgres:17
     container_name: casabela_db
     environment:
-      POSTGRES_USER: seu_usuario
-      POSTGRES_PASSWORD: sua_senha
-      POSTGRES_DB: nome_do_banco
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: casa-bela
     ports:
-      - "5432:5432" # Libera a porta para voc├¬ acessar via DBeaver/PgAdmin do seu PC
+      - "5432:5432" # Libera a porta para vocÔö£┬¼ acessar via DBeaver/PgAdmin do seu PC
