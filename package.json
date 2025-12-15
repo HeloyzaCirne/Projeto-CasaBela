@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node --env-file=.env dist/src/index.js",
-    "build": "tsc && npx copyfiles -u 1 src/views/**/* dist/src",
+    "build": "tsc && npx copyfiles -u 1 src/views/**/* dist/src && npx copyfiles .env *.json dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
