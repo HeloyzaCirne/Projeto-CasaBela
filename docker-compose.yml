@@ -1,6 +1,6 @@
 services:
   app:
-    build: .  # Usa o Dockerfile do diretÔö£Ôöério atual
+    build: .
     container_name: casabela_app
     ports:
       - "3000:3000"
@@ -19,4 +19,4 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: casa-bela
     ports:
-      - "5432:5432" # Libera a porta para vocÔö£┬¼ acessar via DBeaver/PgAdmin do seu PC
+      - "5432:5432"
