@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .  # Usa o Dockerfile do diret├│rio atual
+    container_name: casabela_app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://seu_usuario:sua_senha@db:5432/nome_do_banco?schema=public
+    depends_on:
+      - db
+    restart: always
+    command: sh -c "npx prisma db push && npm run production"
+
+  db:
+    image: postgres:17
+    container_name: casabela_db
+    environment:
+      POSTGRES_USER: seu_usuario
+      POSTGRES_PASSWORD: sua_senha
+      POSTGRES_DB: nome_do_banco
+    ports:
+      - "5432:5432" # Libera a porta para voc├¬ acessar via DBeaver/PgAdmin do seu PC

@@ -17,7 +17,8 @@
   "scripts": {
     "start": "npm run build && node --env-file=.env dist/src/index.js",
     "build": "tsc && npx copyfiles -u 1 src/views/**/* dist/src && npx copyfiles .env *.json dist/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "production": "node --env-file=.env src/index.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
